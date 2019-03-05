@@ -12,7 +12,7 @@
 
 #form {
     float: right;
-    padding: 60px;
+    padding: 4%;
     margin: 50px 50px 50px 50px;
     width: 40%;
     border-style: double;
@@ -27,7 +27,7 @@
     position: absolute;
     height: 100%;
     background: linear-gradient(to bottom, #343a40 0%, white 190%);
-    padding-left: 50px;
+    padding-left: 4%;
 }
 .navbar-brand#navbar-registration{
     font-family: Impact, Charcoal, sans-serif;

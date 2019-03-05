@@ -11,7 +11,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand"  id="navbar-registration" href="#">
+    <a class="navbar-brand" id="navbar-registration" href="#">
         REJESTRACJA - STATYSTYKI RZECZOZNAWCÓW
     </a>
 
@@ -19,25 +19,38 @@
 <div id="total">
 
     <div id="registration-background">
-        <img src="..\..\image\car.jpg" alt="car" height=80%/>
+        <img src="..\..\image\car.jpg" alt="car" width=77%/>
 
     </div>
 
 
     <form id="form">
         <div class="form-group" id="registration-begin">
-            <small id="emailHelp" class="form-text text-muted">Wszystkie pola muszą zostać uzupełnione.</small>
-            <label for="exampleInputEmail1">Imię</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <small id="name" class="form-text text-muted">*Wszystkie pola muszą zostać uzupełnione.</small>
+            <label for="name">Imię</label>
+            <input type="text" class="form-control" id="exampleInputName" aria-describedby="name"
                    placeholder="imię">
 
         </div>
         <div class="form-group">
-            <label for="exampleInputPassword1">Nazwisko</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nazwisko">
+            <label for="exampleInputSurname">Nazwisko</label>
+            <input type="text" class="form-control" id="exampleInputSurname" placeholder="Nazwisko">
         </div>
 
-        <button type="submit" class="btn btn-primary">Zapisz</button>
+        <div class="form-group">
+            <label for="inputState">Uprawnienia</label>
+            <select id="inputState" class="form-control">
+                <option></option>
+                <option>rzeczoznawcka</option>
+                <option>kierownik</option>
+                <option>administrator</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </div>
+
+
     </form>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
