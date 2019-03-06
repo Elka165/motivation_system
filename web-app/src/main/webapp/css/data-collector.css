@@ -1,0 +1,38 @@
+
+
+#total {
+
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: linear-gradient(45deg, lightslategrey 0%, white 190%);
+}
+
+
+#collector-background {
+    float: left;
+    width: 30%;
+    position: absolute;
+    height: 100%;
+    background: linear-gradient(to bottom, #343a40 0%, white 190%);
+    padding-left: 4%;
+
+}
+#collector-form {
+    float: right;
+    padding: 4%;
+    margin: 50px 50px 50px 50px;
+    width: 60%;
+    border-style: double;
+    border-color:grey;
+    box-shadow: 5px 5px 10px;
+
+}
+#data-image{
+    padding-top: 15%;
+}
+
+.navbar-brand#navbar-registration{
+    font-family: Impact, Charcoal, sans-serif;
+    font-size:2.5em;
+}

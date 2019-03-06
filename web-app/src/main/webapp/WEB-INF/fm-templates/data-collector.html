@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="..\..\css\data-collector.css">
+    <title>Statystyki zadań wykonanych</title>
+
+</head>
+<body>
+<div id="total">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" id="navbar-registration" href="#">
+            IRIS - SYSTEM DLA RZECZOZNAWCÓW
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 1.0em; color: white">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#" > UZUPEŁNIANIE STATYSTYK</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">MODYFIKACJA ZLECENIA</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">MOJE ZLECENIA - STATYSTYKI</a>
+                </li>
+            </ul>
+        </div>
+
+
+    </nav>
+    <div id="collector-background">
+        <img src="..\..\image\elements.jpg" alt="elements" width=80% id="data-image"/>
+
+    </div>
+
+    <form id="collector-form">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Żródło</label>
+                <select id="validationDefault01" class="form-control">
+                    <option></option>
+                    <option>AUDANET</option>
+                    <option>EGIDA</option>
+                    <option>SLS</option>
+                    <option>INNE</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Numer szkody</label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Numer szkody" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="dateValidation">Data wpływu</label>
+                <div class="input-group">
+                    <input type="date" class="form-control" id="dateValidation" placeholder="Data wpływu" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="validationDefault03">Rodzaj</label>
+                <select id="validationDefault03" class="form-control">
+                    <option></option>
+                    <option>DECYZJA</option>
+                    <option>FV</option>
+                    <option>GIEŁDA</option>
+                    <option>IN</option>
+                    <option>KA</option>
+                    <option>WER. MOBIL</option>
+                    <option>WK</option>
+                    <option>WR</option>
+                    <option>WP</option>
+                </select>
+            </div>
+            <div class="col-md-8 mb-2">
+                <label for="validationDefault04">Likwidator mobilny</label>
+                <select id="validationDefault04" class="form-control">
+                    <option></option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault08">Kwota roszczenia</label>
+                <input type="number" class="form-control"
+                       step="0.01"
+                       min="0"
+                       id="validationDefault08" placeholder="Kwota roszczenia"
+                       required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Kwota zatwierdzenia</label>
+                <input type="number" class="form-control"
+                       step="0.01"
+                       min="0"
+                       id="validationDefault09" placeholder="Kwota zatwierdzenia"
+                       required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="dateValidation09">Różnica kwot</label>
+                <input type="number" class="form-control"
+                       step="0.01"
+                       min="0"
+                       id="dateValidation09" placeholder="Różnica kwot" required>
+
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-8 mb-3">
+                <label for="dateValidation12">Uwagi</label>
+                <textarea type="text" class="form-control" id="dateValidation12" placeholder="Uwagi" required></textarea>
+
+            </div>
+            <div class="col-md-2 mb-3">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Korekta</label>
+            </div>
+            <div class="col-md-2 mb-3">
+                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+                <label class="form-check-label" for="exampleCheck2">Rabat 5%</label>
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary" type="submit">Zapisz</button>
+
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
