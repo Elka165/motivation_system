@@ -6,7 +6,43 @@
 
     <link rel="stylesheet" type="text/css" href="..\..\css\registration.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+<style>
+    #registration-begin {
 
+    }
+
+    #total {
+
+        margin: 0;
+        border: 0;
+        padding: 0;
+        background: linear-gradient(45deg, lightslategrey 0%, white 190%);
+    }
+
+    #form {
+        float: right;
+        padding: 4%;
+        margin: 50px 50px 50px 50px;
+        width: 40%;
+        border-style: double;
+        border-color:grey;
+        box-shadow: 5px 5px 10px;
+
+    }
+
+    #registration-background {
+        float: left;
+        width: 50%;
+        position: absolute;
+        height: 100%;
+        background: linear-gradient(to bottom, #343a40 0%, white 190%);
+        padding-left: 4%;
+    }
+    .navbar-brand#navbar-registration{
+        font-family: Impact, Charcoal, sans-serif;
+        font-size:2.5em;
+    }
+</style>
 </head>
 <body>
 
@@ -19,7 +55,7 @@
 <div id="total">
 
     <div id="registration-background">
-        <img src="..\..\image\car.jpg" alt="car" width=77%/>
+        <img src=${registration} alt="car" width=77%/>
 
     </div>
 
