@@ -4,10 +4,10 @@
   xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
   version="3.1">
 
-  <!--<data-source>-->
-    <!--<name>java:ds/demods</name>-->
-    <!--<class-name>com.microsoft.sqlserver.jdbc.SQLServerDataSource</class-name>-->
-    <!--<url>jdbc:sqlserver://xxxx;databaseName=xxx;user=xxx;password=xxx</url>-->
-  <!--</data-source>-->
+  <data-source>
+    <name>java:ds/demods</name>
+    <class-name>com.microsoft.sqlserver.jdbc.SQLServerDataSource</class-name>
+    <url>jdbc:sqlserver://BLSSQL\SQLEXPRESS;databaseName=POZA_ANALIZAMI;user=analizy;password=alamakota</url>
+  </data-source>
 
 </web-app>
