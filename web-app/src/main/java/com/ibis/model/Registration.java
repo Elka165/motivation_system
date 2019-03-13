@@ -1,66 +1,92 @@
 package com.ibis.model;
 
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "SM_UPRAWNIENIA_AKCEPT")
 
 public class Registration {
-    private int id;
-    private String imie;
-    private String nazwisko;
-    private String nazwiskoImie;
-    private String login;
-    private LocalDate dataWyslania;
-    private String rodzajUprawnien;
+
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "Id")
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    private Long id;
 
     @Column(name = "Imie")
-    public String getImie() {
-        return imie;
-    }
-
-    public void setImie(String imie) {
-        this.imie = imie;
-    }
+    @NotNull
+    private String name;
 
 
     @Column(name = "Nazwisko")
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
-    }
-
+    @NotNull
+    private String surname;
 
     @Column(name = "Nazwisko_Imie")
-    public String getNazwiskoImie() {
-        return nazwiskoImie;
-    }
-
-    public void setNazwiskoImie(String nazwiskoImie) {
-        this.nazwiskoImie = nazwiskoImie;
-    }
-
+    @NotNull
+    private String surnameAndName;
 
     @Column(name = "login")
+    @NotNull
+    private String login;
+
+    @Column(name = "Data_wyslania")
+    @NotNull
+    private LocalDate sendDate;
+
+    @Column(name = "Rodzaj_Uprawnien")
+    @NotNull
+    private String typeOfPermission;
+
+
+    public Registration() {
+    }
+
+    public Registration(String name, String surname, String surnameAndName, String login, LocalDate sendDate, String typeOfPermission) {
+        this.name = name;
+        this.surname = surname;
+        this.surnameAndName = surnameAndName;
+        this.login = login;
+        this.sendDate = sendDate;
+        this.typeOfPermission = typeOfPermission;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getSurnameAndName() {
+        return surnameAndName;
+    }
+
+    public void setSurnameAndName(String surnameAndName) {
+        this.surnameAndName = surnameAndName;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -69,35 +95,32 @@ public class Registration {
         this.login = login;
     }
 
-
-    @Column(name = "Data_wyslania")
-    public LocalDate getDataWyslania() {
-        return dataWyslania;
+    public LocalDate getSendDate() {
+        return sendDate;
     }
 
-    public void setDataWyslania(LocalDate dataWyslania) {
-        this.dataWyslania = dataWyslania;
+    public void setSendDate(LocalDate sendDate) {
+        this.sendDate = sendDate;
     }
 
-    @Column(name = "Rodzaj_Uprawnien")
-    public String getRodzajUprawnien() {
-        return rodzajUprawnien;
+    public String getTypeOfPermission() {
+        return typeOfPermission;
     }
 
-    public void setRodzajUprawnien(String rodzajUprawnien) {
-        this.rodzajUprawnien = rodzajUprawnien;
+    public void setTypeOfPermission(String typeOfPermission) {
+        this.typeOfPermission = typeOfPermission;
     }
 
     @Override
     public String toString() {
         return "Registration{" +
                 "id=" + id +
-                ", imie='" + imie + '\'' +
-                ", nazwisko='" + nazwisko + '\'' +
-                ", nazwiskoImie='" + nazwiskoImie + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", surnameAndName='" + surnameAndName + '\'' +
                 ", login='" + login + '\'' +
-                ", dataWyslania=" + dataWyslania +
-                ", rodzajUprawnien='" + rodzajUprawnien + '\'' +
+                ", sendDate=" + sendDate +
+                ", typeOfPermission='" + typeOfPermission + '\'' +
                 '}';
     }
 }

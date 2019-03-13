@@ -60,22 +60,22 @@
     </div>
 
 
-    <form id="form">
+    <form id="form" method="post" action="/motivational_system-1.0-SNAPSHOT/rejestracja" >
         <div class="form-group" id="registration-begin">
             <small id="name" class="form-text text-muted">*Wszystkie pola muszą zostać uzupełnione.</small>
             <label for="name">Imię</label>
             <input type="text" class="form-control" id="exampleInputName" aria-describedby="name"
-                   placeholder="imię">
+                   placeholder="imię" required name="name">
 
         </div>
         <div class="form-group">
             <label for="exampleInputSurname">Nazwisko</label>
-            <input type="text" class="form-control" id="exampleInputSurname" placeholder="Nazwisko">
+            <input type="text" class="form-control" id="exampleInputSurname" placeholder="Nazwisko" required name="surname">
         </div>
 
         <div class="form-group">
             <label for="inputState">Uprawnienia</label>
-            <select id="inputState" class="form-control">
+            <select id="inputState" class="form-control" required name="permission">
                 <option></option>
                 <option>rzeczoznawcka</option>
                 <option>kierownik</option>
@@ -83,7 +83,7 @@
             </select>
         </div>
         <div>
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <button type="submit" class="btn btn-primary" name ="save" >Zapisz</button>
         </div>
 
 
@@ -98,6 +98,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
 </div>
 
 

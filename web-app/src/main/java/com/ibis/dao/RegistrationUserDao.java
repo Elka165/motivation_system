@@ -1,6 +1,9 @@
 package com.ibis.dao;
 
 import com.ibis.model.Registration;
+import com.ibis.servlet.RegistrationUserServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,13 +12,15 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Stateless
-public class RegistrationDao {
-
+public class RegistrationUserDao {
+    private Logger LOG = LoggerFactory.getLogger(RegistrationUserServlet.class);
     @PersistenceContext
     private EntityManager entityManager;
 
-    public int save(Registration r){
+    public Long save(Registration r){
         entityManager.persist(r);
+        LOG.info(r.getId().toString());
+
         return r.getId();
     }
 
@@ -23,7 +28,7 @@ public class RegistrationDao {
         return entityManager.merge(r);
     }
 
-    public void delete (int id){
+    public void delete (Long id){
         final Registration r=entityManager.find(Registration.class, id);
         if(r!=null){
             entityManager.remove(r);
@@ -31,7 +36,7 @@ public class RegistrationDao {
 
     }
 
-    public Registration findById (int id){
+    public Registration findById (Long id){
         return entityManager.find(Registration.class, id);
     }
 

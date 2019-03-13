@@ -7,7 +7,7 @@
   <data-source>
     <name>java:ds/demods</name>
     <class-name>com.microsoft.sqlserver.jdbc.SQLServerDataSource</class-name>
-    <url>jdbc:sqlserver://xxx;databaseName=POZA_ANALIZAMI;user=xxx;password=xxx</url>
+    <url>jdbc:sqlserver://BLSSQL\SQLEXPRESS;databaseName=xx;user=xx;password=xx</url>
   </data-source>
 
 </web-app>
