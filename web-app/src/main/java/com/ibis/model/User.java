@@ -3,15 +3,13 @@ package com.ibis.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 
-
+import static java.util.stream.Collectors.toList;
 
 @Entity
-@Table(name = "SM_UPRAWNIENIA_AKCEPT")
-
-public class Registration {
-
-
+@Table(name = "SM_USER")
+public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "Id")
@@ -43,17 +41,23 @@ public class Registration {
     @NotNull
     private String typeOfPermission;
 
+    @Column(name="Aktywny")
+    private Boolean active;
 
-    public Registration() {
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<DataCollector> dataCollectors;
+
+    public User() {
     }
 
-    public Registration(String name, String surname, String surnameAndName, String login, LocalDate sendDate, String typeOfPermission) {
+    public User(String name, String surname, String surnameAndName, String login, LocalDate sendDate, String typeOfPermission, Boolean active) {
         this.name = name;
         this.surname = surname;
         this.surnameAndName = surnameAndName;
         this.login = login;
         this.sendDate = sendDate;
         this.typeOfPermission = typeOfPermission;
+        this.active = active;
     }
 
     public Long getId() {
@@ -112,10 +116,25 @@ public class Registration {
         this.typeOfPermission = typeOfPermission;
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public List<DataCollector> getDataCollectors() {
+        return dataCollectors;
+    }
+
+    public void setDataCollectors(List<DataCollector> dataCollectors) {
+        this.dataCollectors = dataCollectors;
+    }
 
     @Override
     public String toString() {
-        return "Registration{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
@@ -123,7 +142,8 @@ public class Registration {
                 ", login='" + login + '\'' +
                 ", sendDate=" + sendDate +
                 ", typeOfPermission='" + typeOfPermission + '\'' +
-
+                ", active=" + active +
+                ", dataCollectors=" + dataCollectors.stream().map(DataCollector::getId).collect(toList()) +
                 '}';
     }
 }

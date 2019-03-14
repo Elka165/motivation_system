@@ -1,8 +1,12 @@
 package com.ibis.servlet;
 
+import com.ibis.dao.DataCollectorDao;
 import com.ibis.dao.RegistrationUserDao;
+import com.ibis.dao.UserDao;
 import com.ibis.freemarker.TemplateProvider;
+import com.ibis.model.DataCollector;
 import com.ibis.model.Registration;
+import com.ibis.model.User;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -16,8 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,11 +36,21 @@ public class RegistrationUserServlet extends HttpServlet {
     @Inject
     private RegistrationUserDao registrationUserDao;
 
+    @Inject
+    private UserDao userDao;
+
+    @Inject
+    private DataCollectorDao dataCollectorDao;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-    }
+        User user=new User("Ela", "Dolna", "Dolna Ela", "eladolna", LocalDate.now(), "administrator", true );
+        userDao.save(user);
 
+        DataCollector dataCollector=new DataCollector("source", "claim", LocalDateTime.now(), "type", "mobileName", 32D, 23D, 1D, "description", true, false, user);
+        dataCollectorDao.save(dataCollector);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -55,8 +71,12 @@ public class RegistrationUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        addRegisteredUser(req, resp);
+        resp.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
+        final String action = req.getParameter("action");
+        if (action.equals("add")) {
+            addRegisteredUser(req, resp);
+        }
 
         doGet(req, resp);
     }
@@ -65,8 +85,8 @@ public class RegistrationUserServlet extends HttpServlet {
             throws IOException {
 
 
-        Registration r = new Registration();
-        r.setId(1L);
+        final Registration r = new Registration();
+
         r.setName(req.getParameter("name"));
         r.setSurname(req.getParameter("surname"));
         r.setTypeOfPermission(req.getParameter("permission"));
@@ -75,9 +95,6 @@ public class RegistrationUserServlet extends HttpServlet {
         // YYYY-MM-DD
         r.setSendDate(LocalDate.now());
         LOG.info(r.toString());
-        LOG.info("jestem w addUser");
         registrationUserDao.save(r);
-
     }
-
 }

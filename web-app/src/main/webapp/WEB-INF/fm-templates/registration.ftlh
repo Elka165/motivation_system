@@ -61,6 +61,7 @@
 
 
     <form id="form" method="post" action="/motivational_system-1.0-SNAPSHOT/rejestracja" >
+
         <div class="form-group" id="registration-begin">
             <small id="name" class="form-text text-muted">*Wszystkie pola muszą zostać uzupełnione.</small>
             <label for="name">Imię</label>
@@ -77,18 +78,39 @@
             <label for="inputState">Uprawnienia</label>
             <select id="inputState" class="form-control" required name="permission">
                 <option></option>
-                <option>rzeczoznawcka</option>
+                <option>rzeczoznawca</option>
                 <option>kierownik</option>
                 <option>administrator</option>
             </select>
         </div>
         <div>
-            <button type="submit" class="btn btn-primary" name ="save" >Zapisz</button>
+            <button type="submit" class="btn btn-primary" name ="action" value ="add">Zapisz</button>
         </div>
 
-
     </form>
+<script>
+    (function(){
+        var form=document.getElementById('form');
+        addEvent(form, 'submit', function (e) {
+            e.preventDefault();
+            var msg ='Dane zostały przesłane do administratora.';
+            document.getElementById('name').textContent=msg;
+        });
+    }());
+    function addEvent(el, event, callback){
+        if('addEventListener' in el){
+            el.addEventListener(event, callback, false);
 
+        }else{
+            el['e' + event + callback]=callback;
+            el[event + callback]=function () {
+                el['e' + event + callback](window.event);
+
+            };
+            el.attachEvent('on' + event, el[event + callback]);
+        }
+    }
+</script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>

@@ -3,7 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="..\..\css\data-collector.css">
+  <style>
+      #total {
+
+          margin: 0;
+          border: 0;
+          padding: 0;
+          background: linear-gradient(45deg, lightslategrey 0%, white 190%);
+      }
+
+
+      #collector-background {
+          float: left;
+          width: 30%;
+          position: absolute;
+          height: 100%;
+          background: linear-gradient(to bottom, #343a40 0%, white 190%);
+          padding-left: 4%;
+
+      }
+      #collector-form {
+          float: right;
+          padding: 4%;
+          margin: 50px 50px 50px 50px;
+          width: 60%;
+          border-style: double;
+          border-color:grey;
+          box-shadow: 5px 5px 10px;
+
+      }
+      #data-image{
+          padding-top: 15%;
+      }
+
+      .navbar-brand#navbar-registration{
+          font-family: Impact, Charcoal, sans-serif;
+          font-size:2.5em;
+      }
+  </style>
     <title>Statystyki zadań wykonanych</title>
 
 </head>
@@ -32,15 +69,15 @@
 
     </nav>
     <div id="collector-background">
-        <img src="..\..\image\elements.jpg" alt="elements" width=80% id="data-image"/>
+        <img src=${data_collector} alt="elements" width=80% id="data-image"/>
 
     </div>
 
-    <form id="collector-form">
+    <form id="collector-form" method="post" action="/motivational_system-1.0-SNAPSHOT/statystyki-uzupelnianie">
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Żródło</label>
-                <select id="validationDefault01" class="form-control">
+                <select id="validationDefault01" class="form-control" name="source">
                     <option></option>
                     <option>AUDANET</option>
                     <option>EGIDA</option>
@@ -50,19 +87,19 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationDefault02">Numer szkody</label>
-                <input type="text" class="form-control" id="validationDefault02" placeholder="Numer szkody" required>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Numer szkody" required name="claim">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="dateValidation">Data wpływu</label>
                 <div class="input-group">
-                    <input type="date" class="form-control" id="dateValidation" placeholder="Data wpływu" required>
+                    <input type="date" class="form-control" id="dateValidation" placeholder="Data wpływu" required name="transfer-date">
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
                 <label for="validationDefault03">Rodzaj</label>
-                <select id="validationDefault03" class="form-control">
+                <select id="validationDefault03" class="form-control" name="type">
                     <option></option>
                     <option>DECYZJA</option>
                     <option>FV</option>
@@ -77,7 +114,7 @@
             </div>
             <div class="col-md-8 mb-2">
                 <label for="validationDefault04">Likwidator mobilny</label>
-                <select id="validationDefault04" class="form-control">
+                <select id="validationDefault04" class="form-control" name="mobile-name">
                     <option></option>
                 </select>
             </div>
@@ -91,7 +128,7 @@
                        step="0.01"
                        min="0"
                        id="validationDefault08" placeholder="Kwota roszczenia"
-                       required>
+                       required name="amount">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="validationDefault02">Kwota zatwierdzenia</label>
@@ -99,14 +136,14 @@
                        step="0.01"
                        min="0"
                        id="validationDefault09" placeholder="Kwota zatwierdzenia"
-                       required>
+                       required name="amout-approved">
             </div>
             <div class="col-md-4 mb-3">
                 <label for="dateValidation09">Różnica kwot</label>
                 <input type="number" class="form-control"
                        step="0.01"
                        min="0"
-                       id="dateValidation09" placeholder="Różnica kwot" required>
+                       id="dateValidation09" placeholder="Różnica kwot" required name="amount-difference">
 
             </div>
         </div>
@@ -114,21 +151,21 @@
         <div class="form-row">
             <div class="col-md-8 mb-3">
                 <label for="dateValidation12">Uwagi</label>
-                <textarea type="text" class="form-control" id="dateValidation12" placeholder="Uwagi" required></textarea>
+                <textarea type="text" class="form-control" id="dateValidation12" placeholder="Uwagi" required name =description></textarea>
 
             </div>
             <div class="col-md-2 mb-3">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Korekta</label>
+                <label class="form-check-label" for="exampleCheck1" name="correction">Korekta</label>
             </div>
             <div class="col-md-2 mb-3">
                 <input type="checkbox" class="form-check-input" id="exampleCheck2">
-                <label class="form-check-label" for="exampleCheck2">Rabat 5%</label>
+                <label class="form-check-label" for="exampleCheck2" name="discount">Rabat 5%</label>
             </div>
 
         </div>
 
-        <button class="btn btn-primary" type="submit">Zapisz</button>
+        <button class="btn btn-primary" type="submit" action="save" value="save">Zapisz</button>
 
     </form>
 
