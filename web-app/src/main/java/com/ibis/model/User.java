@@ -9,9 +9,16 @@ import static java.util.stream.Collectors.toList;
 
 @Entity
 @Table(name = "SM_USER")
+@NamedQueries({
+        @NamedQuery(
+                name = "findLoginUser",
+                query = "SELECT s FROM User s WHERE s.login = :param "
+        )
+})
+
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
 
     private Long id;
@@ -41,7 +48,7 @@ public class User {
     @NotNull
     private String typeOfPermission;
 
-    @Column(name="Aktywny")
+    @Column(name = "Aktywny")
     private Boolean active;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)

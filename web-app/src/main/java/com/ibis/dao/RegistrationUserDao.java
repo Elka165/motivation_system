@@ -17,31 +17,35 @@ public class RegistrationUserDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Long save(Registration r){
+    public Long save(Registration r) {
         entityManager.persist(r);
-        LOG.info(r.getId().toString());
-
         return r.getId();
     }
 
-    public Registration update(Registration r){
+    public Registration update(Registration r) {
         return entityManager.merge(r);
     }
 
-    public void delete (Long id){
-        final Registration r=entityManager.find(Registration.class, id);
-        if(r!=null){
+    public void delete(Long id) {
+        final Registration r = entityManager.find(Registration.class, id);
+        if (r != null) {
             entityManager.remove(r);
         }
-
     }
 
-    public Registration findById (Long id){
+    public Registration findById(Long id) {
         return entityManager.find(Registration.class, id);
     }
 
-    public List<Registration> findAll(){
-        final Query query=entityManager.createQuery("Select r from Registration  r");
+    public List<Registration> findByLogin(String login) {
+        Query query = entityManager.createNamedQuery("findLoginUser");
+        query.setParameter("param", login);
         return query.getResultList();
     }
+
+    public List<Registration> findAll() {
+        final Query query = entityManager.createQuery("Select r from Registration  r");
+        return query.getResultList();
+    }
+
 }

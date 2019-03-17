@@ -7,6 +7,7 @@ import com.ibis.freemarker.TemplateProvider;
 import com.ibis.model.DataCollector;
 import com.ibis.model.Registration;
 import com.ibis.model.User;
+import com.ibis.registrationMethod.RegistrationRepository;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -31,6 +32,9 @@ import org.slf4j.LoggerFactory;
 @Transactional
 public class RegistrationUserServlet extends HttpServlet {
     private Logger LOG = LoggerFactory.getLogger(RegistrationUserServlet.class);
+    Registration r = new Registration();
+    RegistrationRepository registrationRepository=new RegistrationRepository();
+    String text="*Wszystkie pola muszą zostać uzupełnione.";
     @Inject
     private TemplateProvider templateProvider;
     @Inject
@@ -39,17 +43,9 @@ public class RegistrationUserServlet extends HttpServlet {
     @Inject
     private UserDao userDao;
 
-    @Inject
-    private DataCollectorDao dataCollectorDao;
-
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        User user=new User("Ela", "Dolna", "Dolna Ela", "eladolna", LocalDate.now(), "administrator", true );
-        userDao.save(user);
-
-        DataCollector dataCollector=new DataCollector("source", "claim", LocalDateTime.now(), "type", "mobileName", 32D, 23D, 1D, "description", true, false, user);
-        dataCollectorDao.save(dataCollector);
     }
 
     @Override
@@ -58,10 +54,14 @@ public class RegistrationUserServlet extends HttpServlet {
 
         resp.setCharacterEncoding("UTF-8");
         Map<String, Object> model = new HashMap<>();
-        String path = "...\\..\\image\\car.jpg";
+        String path = "...\\..\\image\\fast_car.jpg";
+
         model.put("registration", path);
+        model.put("text",text );
+        model.put("login", System.getProperty("user.name"));
 
         Template template = templateProvider.getTemplate(getServletContext(), "registration");
+
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
@@ -85,8 +85,6 @@ public class RegistrationUserServlet extends HttpServlet {
             throws IOException {
 
 
-        final Registration r = new Registration();
-
         r.setName(req.getParameter("name"));
         r.setSurname(req.getParameter("surname"));
         r.setTypeOfPermission(req.getParameter("permission"));
@@ -94,7 +92,13 @@ public class RegistrationUserServlet extends HttpServlet {
         r.setSurnameAndName(r.getSurname() + " " + r.getName());
         // YYYY-MM-DD
         r.setSendDate(LocalDate.now());
-        LOG.info(r.toString());
-        registrationUserDao.save(r);
+
+
+        if(registrationUserDao.findByLogin(r.getLogin()).size()==0 && userDao.findByLogin(r.getLogin()).size()==0){
+            registrationUserDao.save(r);
+            text =registrationRepository.writeASentence(r);
+        }else{
+           text="Użytkownik o podanym loginie istnieje już w bazie";
+        }
     }
 }

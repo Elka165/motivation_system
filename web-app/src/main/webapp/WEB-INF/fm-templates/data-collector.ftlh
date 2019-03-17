@@ -20,6 +20,7 @@
           height: 100%;
           background: linear-gradient(to bottom, #343a40 0%, white 190%);
           padding-left: 4%;
+          padding-top: 5%;
 
       }
       #collector-form {
@@ -49,7 +50,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" id="navbar-registration" href="#">
-            IRIS - SYSTEM DLA RZECZOZNAWCÓW
+            IRIS
         </a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size: 1.0em; color: white">
             <ul class="navbar-nav mr-auto">

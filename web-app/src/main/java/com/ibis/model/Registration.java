@@ -9,6 +9,14 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "SM_UPRAWNIENIA_AKCEPT")
 
+@NamedQueries({
+         @NamedQuery(
+             name = "findLoginRegistration",
+           query = "SELECT s FROM Registration s WHERE s.login = :param "
+         )
+        })
+
+
 public class Registration {
 
 

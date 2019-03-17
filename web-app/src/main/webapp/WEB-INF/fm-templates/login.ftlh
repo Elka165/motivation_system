@@ -2,9 +2,9 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Rejestracja</title>
+    <title>Logowanie</title>
 
-    <link rel="stylesheet" type="text/css" href="..\..\css\registration.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
 <style>
     #total {
@@ -33,21 +33,38 @@
         height: 100%;
         background: linear-gradient(to bottom, #343a40 0%, white 190%);
         padding-left: 4%;
-        padding-top: 10%;
     }
     .navbar-brand#navbar-registration{
         font-family: Impact, Charcoal, sans-serif;
         font-size:2.5em;
-    }
-    .form-group#registration-begin #title-message{
-        color: #C21807;
-        font: bold;
     }
 
     .form-group#registration-begin #login{
         color: grey;
         padding-top: 2%;
         padding-bottom: 2%;
+        float: inside;
+    }
+    a{
+        color: white;
+        font-size: 12px;
+        padding-bottom: 2%;
+    }
+
+    a#rejestracja{
+        color: grey;
+        font-size: 14px;
+        float: right;
+        padding-top: 10%;
+    }
+
+    #button{
+        float: left;
+    }
+
+    #isUserInDatabase{
+        color: #C21807;
+        font: bold;
     }
 
 </style>
@@ -56,51 +73,27 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" id="navbar-registration" href="#">
-        IRIS - REJESTRACJA
+        IRIS - LOGOWANIE
     </a>
 
 </nav>
 <div id="total">
 
     <div id="registration-background">
-        <img src=${registration} alt="car" width=77%/>
-
+        <img src=${login_path} alt="owl" width=77%/>
     </div>
-
-
-    <form id="form" method="post" action="/motivational_system-1.0-SNAPSHOT/rejestracja" >
-
+        <form id="form" method="post" action=${servlet} >
         <div class="form-group" id="registration-begin">
-        <div id="title-message">
-            <small><strong>${text}</strong></small>
-        </div>
-
+            <div id="isUserInDatabase">${text}</div>
             <div id="login">${login}</div>
-            <label for="name">Imię</label>
-            <input type="text" class="form-control" id="exampleInputName" aria-describedby="name"
-                   placeholder="imię" required name="name">
 
-        </div>
-        <div class="form-group">
-            <label for="exampleInputSurname">Nazwisko</label>
-            <input type="text" class="form-control" id="exampleInputSurname" placeholder="Nazwisko" required name="surname">
-        </div>
-
-        <div class="form-group">
-            <label for="inputState">Uprawnienia</label>
-            <select id="inputState" class="form-control" required name="permission">
-                <option></option>
-                <option>rzeczoznawca</option>
-                <option>kierownik</option>
-                <option>administrator</option>
-            </select>
-        </div>
         <div>
-            <button type="submit" class="btn btn-primary" name ="action" value ="add">Zapisz</button>
+            <button type="submit" class="btn btn-primary" id="button" name ="action" value="action"  >Zaloguj</button>
+            <a id="rejestracja" href="/motivational_system-1.0-SNAPSHOT/rejestracja" >Zarejestruj się </a>
+
         </div>
 
     </form>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
