@@ -14,6 +14,7 @@ import java.util.List;
 
 public class UserDao {
     private Logger LOG = LoggerFactory.getLogger(LogUserServlet.class);
+
     @PersistenceContext
     private EntityManager entityManager;
 

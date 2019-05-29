@@ -7,7 +7,6 @@ import com.ibis.freemarker.TemplateProvider;
 import com.ibis.model.DataCollector;
 import com.ibis.model.Registration;
 import com.ibis.model.User;
-import com.ibis.registrationMethod.RegistrationRepository;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -48,8 +47,16 @@ public class LogUserServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        User user = new User("Ela", "Dolna", "Dolna Ela", "Weladolna", LocalDate.now(), "administrator", true);
+        User user = new User("Ela", "Dolna", "Dolna Ela", "eladolna", LocalDate.now(), "administrator", true);
         userDao.save(user);
+        Registration registration=new Registration( "Ela", "Dolna", "Dolna Ela", "1eladolna", LocalDate.now(), "administrator");
+        registrationUserDao.save(registration);
+
+        Registration registration2=new Registration( "Ewa", "Kowalska", "Dolna Ela", "eladolna_d", LocalDate.now(), "administrator");
+        registrationUserDao.save(registration2);
+
+        Registration registration3=new Registration( "Ela", "Dolna", "Dolna Ela", "eladolna", LocalDate.now(), "administrator");
+        registrationUserDao.save(registration3);
 
         DataCollector dataCollector = new DataCollector("source", "claim", LocalDateTime.now(), "type", "mobileName", 32D, 23D, 1D, "description", true, false, user);
         dataCollectorDao.save(dataCollector);
@@ -89,7 +96,7 @@ public class LogUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setCharacterEncoding("UTF-8");
         req.setCharacterEncoding("UTF-8");
-        text="Brak użytkownika w bazie. Prośba o zarejestrowanie";
+        text="Brak użytkownika w bazie. Prośba o rejestrację";
         doGet(req, resp);
 
 

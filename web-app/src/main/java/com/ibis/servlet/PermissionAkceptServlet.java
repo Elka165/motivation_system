@@ -2,6 +2,7 @@ package com.ibis.servlet;
 
 import com.ibis.dao.RegistrationUserDao;
 import com.ibis.freemarker.TemplateProvider;
+import com.ibis.model.Registration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.slf4j.Logger;
@@ -17,20 +18,28 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-@WebServlet("/statystyki-uzupelnianie")
+@WebServlet("/akceptacja-uprawnień")
 @Transactional
-public class DataCollectorServlet extends HttpServlet {
-    private Logger LOG = LoggerFactory.getLogger(DataCollectorServlet.class);
+public class PermissionAkceptServlet extends HttpServlet {
+    public  List<Registration> result;
+    private Logger LOG = LoggerFactory.getLogger(PermissionAkceptServlet.class);
     @Inject
     private TemplateProvider templateProvider;
+
     @Inject
     private RegistrationUserDao registrationUserDao;
+
+    @Inject
+
+    private Registration registration;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+
 
     }
 
@@ -40,16 +49,19 @@ public class DataCollectorServlet extends HttpServlet {
 
         resp.setCharacterEncoding("UTF-8");
         Map<String, Object> model = new HashMap<>();
-        String path = "...\\..\\image\\ferrari-car.jpg";
-        model.put("data_collector", path);
-        model.put("fraza", "udalo sie");
+        String pathWhen= "...\\..\\image\\when.jpg";
 
-        Template template = templateProvider.getTemplate(getServletContext(), "data-collector");
+        result = registrationUserDao.findAll();
+        model.put("when", pathWhen);
+        model.put("listOfPermission", result);
+        LOG.info("lista:" + result.toString());
+        Template template = templateProvider.getTemplate(getServletContext(), "permission-accept");
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
@@ -58,5 +70,6 @@ public class DataCollectorServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         doGet(req, resp);
     }
+
 
 }

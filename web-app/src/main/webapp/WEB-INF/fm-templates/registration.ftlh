@@ -91,7 +91,6 @@
             <select id="inputState" class="form-control" required name="permission">
                 <option></option>
                 <option>rzeczoznawca</option>
-                <option>kierownik</option>
                 <option>administrator</option>
             </select>
         </div>

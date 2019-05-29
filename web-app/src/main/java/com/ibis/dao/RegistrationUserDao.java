@@ -1,10 +1,6 @@
 package com.ibis.dao;
 
 import com.ibis.model.Registration;
-import com.ibis.servlet.RegistrationUserServlet;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +9,7 @@ import java.util.List;
 
 @Stateless
 public class RegistrationUserDao {
-    private Logger LOG = LoggerFactory.getLogger(RegistrationUserServlet.class);
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -38,7 +34,7 @@ public class RegistrationUserDao {
     }
 
     public List<Registration> findByLogin(String login) {
-        Query query = entityManager.createNamedQuery("findLoginUser");
+        Query query = entityManager.createNamedQuery("findLoginRegistration");
         query.setParameter("param", login);
         return query.getResultList();
     }

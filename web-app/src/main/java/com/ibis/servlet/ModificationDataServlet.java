@@ -19,14 +19,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet("/statystyki-uzupelnianie")
+@WebServlet("/modyfikacja-zlecenia")
 @Transactional
-public class DataCollectorServlet extends HttpServlet {
-    private Logger LOG = LoggerFactory.getLogger(DataCollectorServlet.class);
+public class ModificationDataServlet extends HttpServlet {
+    private Logger LOG = LoggerFactory.getLogger(ModificationDataServlet.class);
     @Inject
     private TemplateProvider templateProvider;
-    @Inject
-    private RegistrationUserDao registrationUserDao;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
@@ -40,11 +38,14 @@ public class DataCollectorServlet extends HttpServlet {
 
         resp.setCharacterEncoding("UTF-8");
         Map<String, Object> model = new HashMap<>();
-        String path = "...\\..\\image\\ferrari-car.jpg";
-        model.put("data_collector", path);
-        model.put("fraza", "udalo sie");
+        String pathWhen= "...\\..\\image\\when.jpg";
+        String pathWhere = "...\\..\\image\\wherePicture.jpg";
+        String pathHow = "...\\..\\image\\howPicture.jpg";
+        model.put("when", pathWhen);
+        model.put("where", pathWhere);
+        model.put("how", pathHow);
 
-        Template template = templateProvider.getTemplate(getServletContext(), "data-collector");
+        Template template = templateProvider.getTemplate(getServletContext(), "modification-data");
         try {
             template.process(model, resp.getWriter());
         } catch (TemplateException e) {
